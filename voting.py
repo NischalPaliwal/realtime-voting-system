@@ -1,5 +1,5 @@
 import psycopg2
-from confluent_kafka import Consumer, KafkaException, KafkaError, SerializingProducer
+from confluent_kafka import Consumer, KafkaError, SerializingProducer
 import simplejson as json
 import random
 from datetime import datetime

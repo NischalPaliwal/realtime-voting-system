@@ -1,6 +1,8 @@
 import streamlit as st
 import time
 import psycopg2
+from kafka.consumer import KafkaConsumer
+import simplejson as json
 
 @st.cache_data
 def fetch_voting_stats():
@@ -20,6 +22,20 @@ def fetch_voting_stats():
     candidates_count = cursor.fetchone()[0]
 
     return voters_count, candidates_count
+
+def create_kafka_consumer(topic_name):
+    consumer = KafkaConsumer(
+        topic_name,
+        bootstrap_servers='localhost:9092',
+        auto_offset_reset='earliest',
+        value_deserializer=lambda x: json.loads(x.decode('utf-8'))
+    )
+
+    return consumer
+
+def fetch_data_from_kafka(consumer):
+    # messages = consumer.poll(timeout_ms=1000)
+    pass
 
 def update_data():
     last_refresh = st.empty()
