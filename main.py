@@ -132,7 +132,7 @@ def delivery_report(err, msg):
 if __name__ == "__main__":
     producer = SerializingProducer({'bootstrap.servers': 'localhost:9092'})
     try:
-        connection = psycopg2.connect("host=localhost dbname=voting user=postgres password=postgres")
+        connection = psycopg2.connect("host=localhost dbname=voting user=postgres password=nischal")
         cursor = connection.cursor()
 
         create_tables(connection, cursor)
